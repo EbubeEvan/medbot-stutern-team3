@@ -12,11 +12,12 @@ type initUserInterface = {
 const initialState: initUserInterface = {
     data: {
         id: "",
-        name: "",
+        // name: "",
         email: "",
         phoneNumber: "",
+        password: "",
         createdAt: "",
-        updatedAt: ""
+        updatedAt: "",
     },
     status: "init"
 }
@@ -73,6 +74,28 @@ const userSlice = createSlice({
                 state.status = "error";
             }
         )
+        .addCase(
+            updateProfileAsync.fulfilled,
+            (state, action: PayloadAction<userInterface>) => {
+                state.status = "success";
+                state.data = action.payload
+            }
+        )
+        .addCase(
+            updateProfileAsync.rejected,
+            (state) => {
+                state.status = "error";
+                console.log(state);
+                // state.data = action.payload
+            }
+        )
+        .addCase(
+            updateProfileAsync.pending,
+            (state) => {
+                state.status = "pending";
+                // state.data = action.payload
+            }
+        )
     },
 
 });
@@ -80,6 +103,27 @@ const userSlice = createSlice({
 
 export const loginAsync = createAsyncThunk(
     "user/login",
+    async (params: any) => {
+        const response = await fetch('https://example.com/api', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any additional headers required by your API
+            },
+            body: JSON.stringify(params),
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const result = await response.json();
+        return result;
+    }
+)
+
+export const updateProfileAsync = createAsyncThunk(
+    "user/profile",
     async (params: any) => {
         const response = await fetch('https://example.com/api', {
             method: 'POST',

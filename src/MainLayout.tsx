@@ -27,8 +27,8 @@ function MainLayout({ children }: { children: any }) {
       >
         { children }
       </Box>
-      
-      <footer>
+
+      <footer style={{ marginTop: "125px" }}>
         <FooterComponent />
       </footer>
     </main>

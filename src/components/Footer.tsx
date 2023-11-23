@@ -7,9 +7,13 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import BottomNavigation from "@mui/material/BottomNavigation";
 
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
+// import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+// import SmsOutlinedIcon from '@mui/icons-material/SmsOutlined';
+import HistoryIcon from '@mui/icons-material/History';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+
 import CssBaseline from "@mui/material/CssBaseline";
+// import ChatInputComponent from "./ChatInput";
 
 const drawerWidth = sizes.drawerWidth || 240;
 
@@ -32,6 +36,10 @@ const FooterComponent = () => {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
+                {/* <Box sx={{ px: 1, mb: 0.5, mt: 1 }}>
+                    <ChatInputComponent />
+                </Box> */}
+
                 <BottomNavigation
                     showLabels
                     // value={value}
@@ -42,11 +50,10 @@ const FooterComponent = () => {
                     sx={{ bgcolor: colors.bg, }}
                 >
                     <BottomNavigationAction sx={{ color: colors.primary }} label="Home" icon={<HomeOutlinedIcon />} />
-                    <BottomNavigationAction sx={{ color: colors.primary }} label="Bot" icon={<SmsOutlinedIcon />} />
-                    <BottomNavigationAction sx={{ color: colors.primary }} label="Notification" icon={<NotificationsOutlinedIcon />} />
+                    <BottomNavigationAction sx={{ color: colors.primary }} href="history" label="History" icon={<HistoryIcon />} />
+                    <BottomNavigationAction sx={{ color: colors.primary }} href="profile" label="Profile" icon={<PersonOutlineOutlinedIcon />} />
                 </BottomNavigation>
             </Paper>
-
         </Box>
     )
 }
